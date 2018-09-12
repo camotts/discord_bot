@@ -8,6 +8,8 @@ import (
 	"strings"
 	"syscall"
 
+	"discord_bot/character"
+
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -27,6 +29,8 @@ func main() {
 		os.Exit(1)
 	}
 	dg.AddHandler(messageCreate)
+	character.AddCharacterCommandParser(dg)
+	AddTypingSimulatorParser(dg)
 
 	err = dg.Open()
 	if err != nil {
