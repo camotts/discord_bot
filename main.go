@@ -1,14 +1,13 @@
 package main
 
 import (
+	"bots/discord_bot/reputation"
 	"flag"
 	"fmt"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
-
-	"discord_bot/character"
 
 	"github.com/bwmarrin/discordgo"
 )
@@ -28,9 +27,9 @@ func main() {
 		fmt.Println("Error creationg Discord Session", err)
 		os.Exit(1)
 	}
-	dg.AddHandler(messageCreate)
-	character.AddCharacterCommandParser(dg)
-	AddTypingSimulatorParser(dg)
+	//dg.AddHandler(messageCreate)
+	//coding.AddCodingCommandParser(dg)
+	reputation.AddReputationHandler(dg)
 
 	err = dg.Open()
 	if err != nil {
